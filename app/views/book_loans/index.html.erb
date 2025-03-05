@@ -1,4 +1,5 @@
 <% @book_loans.each do |book_loan| %>
+  <%= link_to "Details", book_loan_path(id: book_loan.id) %>
   <p>Book: <%= book_loan.book.title %></p>
   <p>Borrowed At: <%= book_loan.borrowed_at %></p>
   <p>Returned At: <%= book_loan.returned_at %></p>

@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.disabled = true;
 
       try {
-        const response = await fetch("/book_loans", {
+        const response = await fetch("/borrow_books", {
           method: "POST",
-          body: JSON.stringify({ book_loan: { book_id: bookId } }),
+          body: JSON.stringify({ borrow_book: { book_id: bookId } }),
           headers: {
             "Content-Type": "application/json",
             "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await response.json();
-        const messageBox = document.getElementById("book-loan-response");
-        console.log(data)
+        const messageBox = document.getElementById("borrow-book-response");
         if (data.success) {
           messageBox.innerHTML = `<p style="color: green;">${data.message}</p>`;
         } else {

@@ -1,4 +1,4 @@
-class CreateBookLoan
+class BorrowBook
   def initialize(user:, book:)
     @user = user
     @book = book
@@ -9,7 +9,6 @@ class CreateBookLoan
       book_loan = BookLoan.create!(user: user, book: book, fee: book.fee, borrowed_at: Time.zone.now)
 
       book.decrement!(:available_copies)
-      user.decrement!(:balance, book.fee)
 
       { success: true, book_loan: book_loan }
     end

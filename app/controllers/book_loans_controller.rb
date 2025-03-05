@@ -8,6 +8,13 @@ class BookLoansController < ApplicationController
     end
   end
 
+  def show
+    @book_loan = current_user.book_loans.includes(:book, :user).find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def new
     @new_book_loan = BookLoan.new
     @available_books = Book.available

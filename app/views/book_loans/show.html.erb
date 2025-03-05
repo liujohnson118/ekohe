@@ -1,0 +1,9 @@
+<p id="book-loan-id"><%= @book_loan.id %></p>
+<p>Book: <%= @book_loan.book.title %></p>
+<p>Borrowed By: <%= @book_loan.user.email %></p>
+<p>Borrowed At: <%= @book_loan.borrowed_at %></p>
+<p>Returned At: <%= @book_loan.returned_at %></p>
+
+<div id="return-book-response"></div>
+<button id="return-book-button">Return</button>
+<script src="<%= asset_path 'return_book.js' %>"></script>
