@@ -1,0 +1,15 @@
+<h1>Borrow a Book</h1>
+
+<%= form_with url: book_loans_path, method: :post, remote: true, id: "borrow-book-form" do |f| %>
+  <div class="field">
+    <%= f.label :book_id, "Select a Book" %><br>
+    <%= f.collection_select :book_id, @available_books, :id, :title, prompt: "Choose a book" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Borrow", id: "borrow-button" %>
+  </div>
+<% end %>
+
+<!-- This is where we will display success/error messages -->
+<div id="book-loan-response"></div>
+<script src="<%= asset_path 'book_loan_create.js' %>"></script>

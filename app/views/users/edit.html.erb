@@ -1,0 +1,15 @@
+<h1>Edit User <%= @user.email %></h1>
+
+<form id="user-update-form" data-user-id="<%= @user.id %>">
+  <div class="field">
+    <label for="balance">Balance</label><br />
+    <input type="number" id="balance" name="balance" step="0.01" min="0.00" value="<%= @user.balance %>" />
+  </div>
+  <div class="actions">
+    <button type="submit">Save</button>
+  </div>
+</form>
+
+<div id="update-response"></div>
+
+<script src="<%= asset_path 'user_update.js' %>"></script>

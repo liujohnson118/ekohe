@@ -1,0 +1,7 @@
+<% @book_loans.each do |book_loan| %>
+  <p>Book: <%= book_loan.book.title %></p>
+  <p>Borrowed At: <%= book_loan.borrowed_at %></p>
+  <p>Returned At: <%= book_loan.returned_at %></p>
+<% end %>
+
+<p><%= link_to "New Book Loan", new_book_loan_path %></p>
