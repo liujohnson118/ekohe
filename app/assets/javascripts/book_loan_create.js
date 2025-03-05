@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       
-      const bookId = document.getElementById("book_id").value;
+      const bookId = document.getElementById("book-select").value;
       const submitButton = document.getElementById("borrow-button");
       submitButton.disabled = true;
 
       try {
-        const response = await fetch(form.action, {
+        const response = await fetch("/book_loans", {
           method: "POST",
           body: JSON.stringify({ book_loan: { book_id: bookId } }),
           headers: {
@@ -25,10 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.success) {
           messageBox.innerHTML = `<p style="color: green;">${data.message}</p>`;
         } else {
-          messageBox.innerHTML = `<p style="color: red;">${data.error}</p>`;
+          messageBox.innerHTML = `<p style="color: red;">${data.errors}</p>`;
         }
       } catch (error) {
-        console.error("Error:", JSON.parse(error));
+        messageBox.innerHTML = `<p style="color: red;">${data.errors}</p>`;
       } finally {
         submitButton.disabled = false;
       }

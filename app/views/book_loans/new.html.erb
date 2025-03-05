@@ -1,14 +1,19 @@
 <h1>Borrow a Book</h1>
 
-<%= form_with url: book_loans_path, method: :post, remote: true, id: "borrow-book-form" do |f| %>
+<form id="borrow-book-form"">
   <div class="field">
-    <%= f.label :book_id, "Select a Book" %><br>
-    <%= f.collection_select :book_id, @available_books, :id, :title, prompt: "Choose a book" %>
+    <label for="book-select">Select a Book</label><br />
+    <select id="book-select" name="book_id">
+      <option value="" disabled selected>Choose a book</option>
+      <% @available_books.each do |book| %>
+        <option value="<%= book.id %>"><%= book.title %></option>
+      <% end %>
+    </select>
   </div>
   <div class="actions">
-    <%= f.submit "Borrow", id: "borrow-button" %>
+    <button type="submit" id="borrow-button">Borrow</button>
   </div>
-<% end %>
+</form>
 
 <!-- This is where we will display success/error messages -->
 <div id="book-loan-response"></div>

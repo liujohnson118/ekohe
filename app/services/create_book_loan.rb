@@ -13,7 +13,7 @@ class CreateBookLoan
 
       { success: true, book_loan: book_loan }
     end
-  rescue ActiveRecord::RecordInvalid => e
+  rescue StandardError => e
     { success: false, error: e.message }
   end
 
