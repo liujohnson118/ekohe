@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :update]
+  # before_action :authenticate_user!
+  before_action :set_user, only: [:edit, :update, :account_status]
 
   def index
     @users = User.all
 
     respond_to do |format|
+      format.json { render json: @users }
       format.html
     end
   end
@@ -20,26 +21,27 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       respond_to do |format|
         format.json { render json: @user }
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            "update-response",
-            partial: "users/update_response",
-            locals: { user: @user }
-          )
-        end
       end
     else
       respond_to do |format|
         format.json { render json: @user.errors, status: :unprocessable_entity }
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            "update-response",
-            partial: "users/update_response",
-            locals: { errors: @user.errors.full_messages }
-          )
-        end
       end
     end
+  end
+
+  def account_status
+    render json: {
+      balance: @user.balance,
+      book_loans: @user.book_loans.includes(:book).map do |loan|
+        {
+          id: loan.id,
+          book_id: loan.book_id,
+          book_title: loan.book.title,
+          borrowed_at: loan.borrowed_at,
+          returned_at: loan.returned_at
+        }
+      end
+    }
   end
 
   private

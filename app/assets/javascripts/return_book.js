@@ -1,9 +1,12 @@
-document.addEventListener("turbo:load", () => {
+console.log("return_book.js loaded");
+
+document.addEventListener("turbo:render", () => {
   const button = document.getElementById("return-book-button");
 
   if (button) {
     button.addEventListener("click", async (event) => {
       event.preventDefault();
+      console.log("return book button clicked");
       
       const bookLoanId = document.getElementById("book-loan-id").innerText;
 
@@ -27,7 +30,7 @@ document.addEventListener("turbo:load", () => {
       } catch (error) {
         messageBox.innerHTML = `<p style="color: red;">${data.errors}</p>`;
       } finally {
-        submitButton.disabled = false;
+        console.log("completed book return")
       }
     });
   }

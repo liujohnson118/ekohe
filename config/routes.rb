@@ -10,9 +10,20 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  resources :users, only: [:index, :update, :edit]
-  resources :book_loans, only: [:index, :new, :show]
+  resources :users, only: [:index, :update, :edit] do
+    member do
+      get :account_status
+    end
+  end
+
+  resources :books, only: [] do
+    member do
+      get :book_incomes
+    end
+  end
+
   resources :borrow_books, only: [:create]
+
   resources :return_books, only: [:create]
 
   # Defines the root path route ("/")

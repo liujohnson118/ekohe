@@ -1,9 +1,14 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("borrow-book-form");
+console.log("borrow_book.js loaded");
 
-  if (form) {
-    form.addEventListener("submit", async (event) => {
+document.addEventListener("turbo:render", () => {
+  const form = document.getElementById("borrow-book-form");
+  console.log(form)
+  const submitButton = document.getElementById("borrow-button");
+
+  if (submitButton) {
+    submitButton.addEventListener("click", async (event) => {
       event.preventDefault();
+      console.log("Form submitted");
       
       const bookId = document.getElementById("book-select").value;
       const submitButton = document.getElementById("borrow-button");

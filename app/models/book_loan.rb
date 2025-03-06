@@ -1,5 +1,6 @@
 class BookLoan < ApplicationRecord
   scope :not_returned, -> { where(returned_at: nil) }
+  scope :returned, -> { where.not(returned_at: nil) }
 
   belongs_to :user
   belongs_to :book

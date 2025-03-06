@@ -6,7 +6,7 @@ class BorrowBook
 
   def call
     ActiveRecord::Base.transaction do
-      book_loan = BookLoan.create!(user: user, book: book, fee: book.fee, borrowed_at: Time.zone.now)
+      book_loan = BookLoan.create!(user: user, book: book, fee: book.fee, borrowed_at: Time.now)
 
       book.decrement!(:available_copies)
 

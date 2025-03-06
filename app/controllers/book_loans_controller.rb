@@ -23,18 +23,6 @@ class BookLoansController < ApplicationController
     end
   end
 
-  def create
-    create_book_loan_data = CreateBookLoan.new(user: current_user, book: book).call
-
-    respond_to do |format|
-      if create_book_loan_data[:success]
-        format.json { render json: { success: true, message: "Book borrowed successfully!" }, status: :ok }
-      else
-        format.json { render json: { success: false, errors: create_book_loan_data[:error] }, status: :unprocessable_entity }
-      end
-    end
-  end
-
   private
 
   def book
