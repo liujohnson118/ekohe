@@ -170,3 +170,60 @@ Sample response:
     ]
 }
 ```
+
+5. Endpoint For Incomes of Book:
+
+URL: GET `http://localhost:3000/books/2/book_incomes.json?start_date=2025-03-01&end_date=2025-03-07`
+Example Response:
+```
+{
+    "book_loans": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "book_id": 2,
+            "borrowed_at": "2025-03-06T14:49:17.967Z",
+            "returned_at": "2025-03-06T14:49:17.986Z",
+            "fee": "1.25",
+            "created_at": "2025-03-06T14:49:17.976Z",
+            "updated_at": "2025-03-06T14:49:17.986Z"
+        },
+        {
+            "id": 3,
+            "user_id": 2,
+            "book_id": 2,
+            "borrowed_at": "2025-03-06T15:11:29.767Z",
+            "returned_at": "2025-03-06T15:16:22.540Z",
+            "fee": "1.25",
+            "created_at": "2025-03-06T15:11:29.775Z",
+            "updated_at": "2025-03-06T15:16:22.541Z"
+        }
+    ],
+    "total_revenue": "2.5"
+}
+```
+
+6. Monthly and annual reports for a user. This one I made an endpoint that takes the start and end dates and returns the book loans along with summary data for the user during the date range. In the summary, you shall see how many times in total the user has borrowed and how many unique books the user has borrowed, as well as the total fees paid (for books that have been returned). 
+URL: GET `http://localhost:3000/users/1/book_loans.json?start_date=2025-03-01&end_date=2025-03-07`
+Example Reponse: 
+```
+{
+    "book_loans": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "book_id": 2,
+            "borrowed_at": "2025-03-06T14:49:17.967Z",
+            "returned_at": "2025-03-06T14:49:17.986Z",
+            "fee": "1.25",
+            "created_at": "2025-03-06T14:49:17.976Z",
+            "updated_at": "2025-03-06T14:49:17.986Z"
+        }
+    ],
+    "summary": {
+        "times_borrowed": 1,
+        "unique_books_borrowed": 1,
+        "total_fees": "1.25"
+    }
+}
+```
