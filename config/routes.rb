@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  resources :users, only: [:index, :update, :edit] do
+  resources :users, only: [:index, :update] do
     member do
       get :account_status
+    end
+    scope module: :users do
+      resources :book_loans, only: [:index]
     end
   end
 

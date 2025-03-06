@@ -1,31 +1,17 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :account_status]
 
   def index
     @users = User.all
 
-    respond_to do |format|
-      format.json { render json: @users }
-      format.html
-    end
-  end
-
-  def edit
-    respond_to do |format|
-      format.html
-    end
+    render json: @users
   end
 
   def update
     if @user.update(user_params)
-      respond_to do |format|
-        format.json { render json: @user }
-      end
+      render json: @user
     else
-      respond_to do |format|
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
