@@ -1,5 +1,8 @@
 # README
 
+## IMPORTANT NOTICE
+All 6 endpoints requested are done and are testable from Postman. Please ignore all front end stuff as these front end stuff are not working.
+
 * Assumptions Made
 1. The user is only charged a fee at the time of returning the book to library and NOT at the time of taking out a book from library. 
 2. Because of condition 1, we only allow users to take out a book (i.e. create a book loan) when the 3 condtions are met: 
