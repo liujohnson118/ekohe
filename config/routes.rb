@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   resources :users, only: [:index, :update, :edit]
-  resources :book_loans, only: [:index, :create, :update, :new]
+  resources :book_loans, only: [:index, :new, :show]
+  resources :borrow_books, only: [:create]
+  resources :return_books, only: [:create]
 
   # Defines the root path route ("/")
   root "welcome#index"

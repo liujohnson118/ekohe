@@ -8,6 +8,7 @@ class ReturnBook
       book_loan.update!(returned_at: Time.zone.now)
 
       user.decrement!(:balance, book_loan.fee)
+      book.increment!(:available_copies)
 
       { success: true, book_loan: book_loan }
     end
