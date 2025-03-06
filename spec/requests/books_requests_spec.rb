@@ -18,7 +18,7 @@ RSpec.describe BooksController, type: :request do
     context "with valid date range" do
       let(:start_date) { 3.days.ago.to_date.to_s }
       let(:end_date) { Time.zone.now.to_date.to_s }
-    
+
       it "returns the total revenue and book loans within range" do
         get book_incomes_book_path(book.id), params: { start_date: start_date, end_date: end_date }, as: :json
 
